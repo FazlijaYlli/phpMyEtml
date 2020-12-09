@@ -12,7 +12,6 @@ include_once "Model.php";
 
 class Database extends Model
 {
-
     /**
      * Constructeur
      */
@@ -20,39 +19,56 @@ class Database extends Model
     {
         try {
             $this->pdo = new PDO(
-                'mysql:host=' . $_SESSION['address'] .
-                ';dbname=mysql;charset=utf8',
-                $_SESSION['user'], $_SESSION['password']);
+                'mysql:host=' . $_SESSION['address'] . ';dbname=db_support;charset=utf8', $_SESSION['user'], $_SESSION['password']);
         } catch (PDOException $e) {
             die("Erreur : " . $e->getMessage());
         }
     }
 
     /**
-     * Retourne tous les enseignants
-     *
+     * Retourne un tableau contenant toutes les bases de données.
      * @return array
      */
     public function getDatabases()
     {
-        $req = $this->querySimpleExecute("Show databases");
+        $req = $this->querySimpleExecute("SHOW DATABASES");
         $result = $this->formatData($req);
         $this->unsetData($req);
         return $result;
     }
 
     /**
-     * Retourne tous les enseignants
-     *
-     * @return array
+     * Crée une base de données sur le serveur MySQL.
+     * @param string $dbname Nom de la base de données à créer.
+     * @return void
      */
     public function createDatabase($dbname){
-        $req = $this->querySimpleExecute("create database ".$dbname);
+        $req = $this->querySimpleExecute("CREATE DATABASE ".$dbname);
+        $this->UnsetData($req);
     }
 
+    /**
+     * @param int $idEleve ID de l'élève duquel nous souhaitons obtenir ses informations.
+     * @return array Tableau d'informations
+     */
+    public function getOneStudent($idEleve)
+    {
+        $req = $this->querySimpleExecute("SELECT * FROM t_eleves WHERE idEleve=$idEleve");
+        $result = $this->formatData($req);
+        $this->unsetData($req);
+        return $result;
+    }
 
-
-
+    /**
+     * Permets de changer le mot de passe d'un utilisateur.
+     * @param int $idEleve Id de l'utilisateur à modifier
+     * @param string $newPasswordHash Hash du nouveau mot de passe de l'élève.
+     */
+    public function changePassword($idEleve, $newPasswordHash)
+    {
+        $req = $this->querySimpleExecute("UPDATE t_eleves SET elePassword=$newPasswordHash WHERE idEleve=$idEleve");
+        $this->unsetData($req);
+    }
 }
 
 
