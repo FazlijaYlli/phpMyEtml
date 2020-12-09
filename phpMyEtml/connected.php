@@ -54,8 +54,8 @@ foreach($connect->getDatabases() as $results){
 
         echo '<tr>
                 <td>'.$result.'</td>
-                <td><a href="">Importer...</a> </td>
-                <td><a href="">Exporter...</a> </td>
+                <td><a href="importdb.php?dbList='.$result.'">Importer...</a> </td>
+                <td><a href="exportdb.php?dbList='.$result.'">Exporter...</a> </td>
                 
              </tr>';
 
