@@ -39,7 +39,7 @@ session_start(); ?>
 
 
 <?php
-include 'database.php';
+include 'lib/database.php';
 
 
 $connect = new database();
