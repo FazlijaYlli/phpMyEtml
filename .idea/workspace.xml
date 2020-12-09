@@ -23,6 +23,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Logiciels\Wamp\UwAmp\www\phpMyEtml\" />
+      <recent name="F:\Logiciels\Wamp\UwAmp\www\phpMyEtml\src/php" />
+      <recent name="F:\Logiciels\Wamp\UwAmp\www\phpMyEtml\src\php\" />
+      <recent name="F:\Logiciels\Wamp\UwAmp\www\phpMyEtml\src" />
       <recent name="F:\Logiciels\Wamp\UwAmp\www\phpMyEtml\tmp" />
     </key>
   </component>
@@ -35,7 +39,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606908580633</updated>
       <workItem from="1606908581951" duration="10888000" />
-      <workItem from="1607515628785" duration="7721000" />
+      <workItem from="1607515628785" duration="8587000" />
     </task>
     <servers />
   </component>
@@ -63,5 +67,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="235" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606910306373" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607524904126">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607524904126" />
   </component>
 </project>
