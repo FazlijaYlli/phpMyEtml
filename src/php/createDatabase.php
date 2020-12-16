@@ -1,4 +1,7 @@
 <?php session_start();
-include 'lib/database.php';
+include 'database.php';
 $data = new Database();
+$data->createDatabase($_POST['dbname']);
+header('Location:connected.php');
+
 ?>
