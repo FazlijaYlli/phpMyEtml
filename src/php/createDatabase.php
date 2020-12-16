@@ -1,4 +1,6 @@
 <?php session_start();
-include 'lib/database.php';
+include 'database.php';
 $data = new Database();
+
+
 ?>
