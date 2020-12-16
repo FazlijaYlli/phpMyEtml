@@ -41,14 +41,6 @@ class Database extends Model
         return $result;
     }
 
-    public function customQuery($query)
-    {
-        $req = $this->querySimpleExecute($query);
-        $result = $this->formatData($req);
-        $this->unsetData($req);
-        return $result;
-    }
-
     /**
      * Retourne tous les enseignants
      *
@@ -56,10 +48,6 @@ class Database extends Model
      */
     public function createDatabase($dbname){
         $req = $this->querySimpleExecute("create database ".$dbname);
-    }
-
-    public function insertData($file){
-        $req = $this->querySimpleExecute("LOAD DATA INFILE ".$file." ");
     }
 
 

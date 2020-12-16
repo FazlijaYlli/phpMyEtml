@@ -24,18 +24,6 @@ session_start(); ?>
             </li>
         </ul>
     </div>
-    <div class="log">
-        <?php
-
-        if(isset($_SESSION['user'])){
-            echo 'Bonjour, ' .$_SESSION['user'];
-            echo '<a href="disconnect.php" style="color: red;"> Déconnexion</a>';
-        }
-
-
-
-        ?>
-    </div>
 </nav>
 <main class="container">
 
@@ -51,30 +39,32 @@ session_start(); ?>
 
 
 <?php
-include 'lib/Database.php';
+include 'lib/database.php';
+
+
+$connect = new database();
+
+$connect->getDatabases();
 
 
 
+foreach($connect->getDatabases() as $results){
+    foreach($results as $result)
+    {
 
-if(!empty($_SESSION['user'])){
-    $connect = new database();
-
-    $connect->getDatabases();
-    foreach($connect->getDatabases() as $results){
-        foreach($results as $result)
-        {
-
-            echo '<tr>
+        echo '<tr>
                 <td>'.$result.'</td>
-                <td><a href="importdb.php?dbList='.$result.'">Importer...</a> </td>
-                <td><a href="exportdb.php?dbList='.$result.'">Exporter...</a> </td>
+                <td><a href="">Importer...</a> </td>
+                <td><a href="">Exporter...</a> </td>
                 
              </tr>';
 
-        }
-
     }
-    echo ' </tbody>
+
+}
+
+?>
+        </tbody>
     </table>
     <form action="createDatabase.php" name="newdatabase" enctype="multipart/form-data" method="post">
         <label for="dbname">Nom de la base de données</label>
@@ -82,16 +72,7 @@ if(!empty($_SESSION['user'])){
         <br>
         <button type="submit" name="dbnameSubmit" class="btn btn-primary">Créer une donnée</button>
 
-    </form>';
-
-}
-else{
-    echo "ACCES NON AUTORISE, RAISON : UTILISATEUR NON IDENTIFIE";
-}
-
-
-?>
-
+    </form>
 
 </main>
 </body>
