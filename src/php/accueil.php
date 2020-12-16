@@ -39,7 +39,7 @@
                 </div>
                 <div class="formHide">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radConnect" id="radConnect1" value="localhost" data-toggle="collapse" data-parent="#accordion"data-target=".collapseOne.show" >
+                        <input class="form-check-input" type="radio" name="radConnect" id="radConnect1" value="10.228.156.128:8080" data-toggle="collapse" data-parent="#accordion"data-target=".collapseOne.show" >
                         <label class="form-check-label" for="radConnect1">
                             Connexion en local
                         </label>

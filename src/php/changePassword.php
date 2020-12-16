@@ -3,34 +3,59 @@ session_start();
 if(isset($_POST['passwordSubmit']))
 {
     include 'lib/database.php';
-
     $db = new Database();
-    $eleve = $db->getOneStudent(1);
-
     $arrayErrors = array();
-    $oldPasswordHash = $eleve[0]['elePassword'];
-    $oldPassword = $_POST['oldPassword'];
-    $newPassword = $_POST['newPassword'];
-    $newPasswordConfirm = $_POST['newPasswordConfirm'];
 
-    //TRAITEMENT DU CHANGEMENT DE MOT DE PASSE
-    //Comparaison avec l'ancien mot de passe.
-    if(!password_verify($oldPassword,$oldPasswordHash))
+    if($_POST['username'])
     {
-        $arrayErrors[] = "L'ancien mot de passe ne correspond pas.";
+        if($db->getIdByUsername($_POST['username']))
+        {
+            if($db->getOneStudent($db->getIdByUsername($_POST['username'])[0]['idEleve']))
+            {
+                $eleve = $db->getOneStudent($db->getIdByUsername($_POST['username'])[0]['idEleve']);
+                $idEleve = $eleve[0]['idEleve'];
+                $oldPasswordHash = $eleve[0]['elePassword'];
+                $oldPassword = $_POST['oldPassword'];
+                $newPassword = $_POST['newPassword'];
+                $newPasswordConfirm = $_POST['newPasswordConfirm'];
+
+                //TRAITEMENT DU CHANGEMENT DE MOT DE PASSE
+                //Comparaison avec l'ancien mot de passe.
+                if(!password_verify($oldPassword,$oldPasswordHash))
+                {
+                    $arrayErrors[] = "L'ancien mot de passe ne correspond pas.";
+                }
+
+                //Comparaison des deux nouveaux mots de passe.
+                if($newPassword != $newPasswordConfirm)
+                {
+                    $arrayErrors[] = "Les mots de passe ne correspondent pas.";
+                }
+
+                //Si un des champs est vide.
+                if(empty($newPassword) || empty($newPasswordConfirm) || empty($oldPassword))
+                {
+                    $arrayErrors[] = "Les champs doivent tous être remplis.";
+                }
+
+                //SI LE FORMULAIRE EST CORRECTEMENT REMPLI
+                if(empty($arrayErrors))
+                {
+                    //Connexion à la base de données
+                    $hash = password_hash($newPassword,PASSWORD_BCRYPT);
+                    $db->changePassword($idEleve, $hash);
+                    $success = true;
+                }
+            }
+        }
+        else
+        {
+            $arrayErrors[] = "Le nom d'utilisateur n'existe pas.";
+        }
     }
-
-    //Comparaison des deux nouveaux mots de passe.
-    if($newPassword != $newPasswordConfirm)
+    else
     {
-        $arrayErrors[] = "Les mots de passe ne correspondent pas.";
-    }
-
-    //SI LE FORMULAIRE EST CORRECTEMENT REMPLI
-    if(empty($arrayErrors))
-    {
-        //Connexion à la base de données
-        $db->changePassword(1,password_hash($newPassword,PASSWORD_BCRYPT));
+        $arrayErrors[] = "Veuillez renseigner un nom d'utilisateur.";
     }
 }
 ?>
@@ -51,7 +76,7 @@ if(isset($_POST['passwordSubmit']))
     </head>
     <body>
         <nav class="navbar navbar-expand navbar-light bg-light">
-            <a class="navbar-brand" href="#">PhpMyEtml</a>
+            <a class="navbar-brand" href="#">phpMyEtml</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -81,8 +106,20 @@ if(isset($_POST['passwordSubmit']))
                     echo '</ul>';
                     echo '</div>';
                 }
+
+                if (isset($success)) {
+                    if ($success) {
+                        echo '<div class="alert alert-success">';
+                        echo "Votre mot de passe a bien été changé !";
+                        echo '</div>';
+                    }
+                }
             ?>
             <form method="post" action="#" enctype="multipart/form-data" name="changePasswordForm">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" class="form-control" id="username" name="username" value="<?php if(isset($_POST['username'])) { echo $_POST['username']; } ?>">
+                </div>
                 <div class="form-group">
                     <label for="oldPassword">Ancien mot de passe</label>
                     <input type="password" class="form-control" id="oldPassword" name="oldPassword">

@@ -9,7 +9,6 @@
 
 include_once "Model.php";
 
-
 class Database extends Model
 {
     /**
@@ -19,7 +18,7 @@ class Database extends Model
     {
         try {
             $this->pdo = new PDO(
-                'mysql:host=' . $_SESSION['address'] . ';dbname=db_support;charset=utf8', $_SESSION['user'], $_SESSION['password']);
+                'mysql:host=' . $_SESSION['address'] . ';dbname=db_users;charset=utf8', $_SESSION['user'], $_SESSION['password']);
         } catch (PDOException $e) {
             die("Erreur : " . $e->getMessage());
         }
@@ -63,13 +62,24 @@ class Database extends Model
      * Permets de changer le mot de passe d'un utilisateur.
      * @param int $idEleve Id de l'utilisateur à modifier
      * @param string $newPasswordHash Hash du nouveau mot de passe de l'élève.
+     * @return void
      */
     public function changePassword($idEleve, $newPasswordHash)
     {
-        $req = $this->querySimpleExecute("UPDATE t_eleves SET elePassword=$newPasswordHash WHERE idEleve=$idEleve");
+        $req = $this->querySimpleExecute("UPDATE t_eleves SET elePassword='$newPasswordHash' WHERE idEleve=$idEleve");
         $this->unsetData($req);
     }
+
+    /**
+     * Permets de retrouver un ID avec un pseudo.
+     * @param string $elePseudo Pseudo de l'utilisateur
+     * @return array
+     */
+    public function getIdByUsername($elePseudo)
+    {
+        $req = $this->querySimpleExecute("SELECT idEleve FROM t_eleves WHERE elePseudo='$elePseudo'");
+        $result = $this->formatData($req);
+        $this->unsetData($req);
+        return $result;
+    }
 }
-
-
-?>
