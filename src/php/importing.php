@@ -15,6 +15,7 @@ foreach($lines as $line){
         $con->query($templine);
         $templine = '';
     }
-    echo "Tables imported successfully";
+
 }
+header('Location:connected.php');
 ?>
