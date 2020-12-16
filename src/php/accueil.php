@@ -9,7 +9,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand navbar-light bg-light">
-    <a class="navbar-brand" href="#">PhpMyEtml</a>
+    <a class="navbar-brand" href="#">phpMyEtml</a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">

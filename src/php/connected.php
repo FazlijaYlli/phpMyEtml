@@ -51,7 +51,7 @@ session_start(); ?>
 
 
 <?php
-include 'database.php';
+include 'lib/Database.php';
 
 
 
