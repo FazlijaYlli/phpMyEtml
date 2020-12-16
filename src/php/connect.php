@@ -5,13 +5,15 @@ try {
     $_SESSION['password'] = $_POST['password'];
     $_SESSION['user'] = $_POST['user'];
     $_SESSION['address'] = $_POST['radConnect'];
+
 }
 catch(PDOException $e){
     $_SESSION['password'] = NULL;
     $_SESSION['user'] = NULL;
     $_SESSION['address'] = NULL;
+
 }
 
-	header("Location:../../index.php");
+        header("Location:../../index.php");
 
 ?>
