@@ -13,7 +13,7 @@ abstract class Model {
      * Effectue une requête à la base de donnée sans where
      *
      * @param string $query Requête SQL sous forme de string
-     * @return void
+     * @return PDOStatement
      */
     protected function querySimpleExecute($query) {
         $req = $this->pdo->prepare($query);
@@ -26,7 +26,7 @@ abstract class Model {
      *
      * @param string $query Requête SQL avec la syntaxe (idTeacher = :varId)
      * @param array $binds Tableau de trois éléments respectivement : nom du paramètre, valeur du paramètre, type du paramètre (PDO)
-     * @return void
+     * @return PDOStatement
      */
     protected function queryPrepareExecute($query, $binds) {
         $req = $this->pdo->prepare($query);
