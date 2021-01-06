@@ -95,13 +95,56 @@ class Database extends Model
 
     
     /**
-     * Retourne tous les enseignants
+     * Ajout les permission de modifié une DB
      *
      * @return array
      */
     public function addPermission($dbname){
         $queryToUse = 'GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, CREATE VIEW, EVENT, TRIGGER, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EXECUTE ON '.$dbname.'.* TO '.$_SESSION["user"].'@"%"';
         $req = $this->querySimpleExecute($queryToUse);
+    }
+
+
+    /**
+     * Supprimer une database
+     *
+     * @return void
+     */
+    public function deleteDataBase($dbname)
+    {
+        // Vérifie si l'utilisateur possède bien des droits sur la DB
+        $myData = false;
+        foreach($this->getDatabases() as $database)
+        {
+            if($database['db'] == $dbname)
+            {
+                $myData = true;
+            }
+        }
+
+        if($myData)
+        {
+            $queryToUse ="DROP DATABASE $dbname";
+
+            $req = $this->querySimpleExecute($queryToUse);
+            $this->unsetData($req);
+            $this->revokPrivileges($dbname);
+        }
+
+    }
+
+    /**
+     * Revoque les privilèges d'un utilisateur pour une db
+     *
+     * @return void
+     */
+    public function revokPrivileges($dbname)
+    {
+        $user = $_SESSION['user'];
+        $queryToUse ="REVOKE ALL PRIVILEGES ON $dbname.* FROM $user@'%'";
+
+        $req = $this->querySimpleExecute($queryToUse);
+        $this->unsetData($req);
     }
 
     /**

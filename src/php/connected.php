@@ -45,6 +45,7 @@ session_start(); ?>
             <th scope="col">Base de donnée</th>
             <th scope="col">Importer des données</th>
             <th scope="col">Exporter la base de donnée</th>
+            <th scope="col">Supprimer la DataBase</th>
         </tr>
         </thead>
         <tbody>
@@ -64,6 +65,7 @@ if(!empty($_SESSION['user'])){
                 <td>'.$result.'</td>
                 <td><a href="importdb.php?dbList='.$result.'">Importer...</a> </td>
                 <td><a href="exportdb.php?dbList='.$result.'">Exporter...</a> </td>
+                <td><a href="deletDB.php?dbname='.$result.'">Supprimer...</a> </td>
                 
              </tr>';
 
