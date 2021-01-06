@@ -8,10 +8,10 @@
 
 $GLOBALS['database'] = array(
     "dbname"    => "mysql",
-    "username"  => "root",
-    "password"  => "root",
-    "host"      => "localhost",
-    "port"      => "3306",
+    "username"  => "teacher",
+    "password"  => ".Etml-*123",
+    "host"      => "10.228.156.137",
+    "port"      => "15000",
     "charset"   => "utf8"
 );
 
