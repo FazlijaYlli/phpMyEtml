@@ -65,7 +65,7 @@ class Database extends Model
      * @return array
      */
     public function createDatabase($dbname){
-        $req = $this->querySimpleExecute("create database ".$dbname);
+        $req = $this->querySimpleExecute("create database ".$_SESSION["user"]."_".$dbname);
         $this->addPermission($dbname);
     }
 

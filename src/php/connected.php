@@ -61,7 +61,6 @@ if(!empty($_SESSION['user'])){
     foreach($connect->getDatabases() as $results){
         foreach($results as $result)
         {
-
             echo '<tr>
                 <td>'.$result.'</td>
                 <td><a href="importdb.php?dbList='.$result.'">Importer...</a> </td>
