@@ -10,10 +10,8 @@
 include_once "Model.php";
 include_once "../../config.ini.php";
 
-
 class Database extends Model
 {
-
     /**
      * Constructeur
      */
@@ -39,8 +37,7 @@ class Database extends Model
     }
 
     /**
-     * Retourne tous les enseignants
-     *
+     * Retourne un tableau contenant toutes les bases de données.
      * @return array
      */
     public function getDatabases()
@@ -62,9 +59,9 @@ class Database extends Model
 
 
     /**
-     * Retourne tous les enseignants
-     *
-     * @return array
+     * Crée une base de données sur le serveur MySQL.
+     * @param string $dbname Nom de la base de données à créer.
+     * @return void
      */
     public function createDatabase($dbname){
         $req = $this->querySimpleExecute("create database ".$_SESSION["user"]."_".$dbname);
@@ -107,8 +104,16 @@ class Database extends Model
         $req = $this->querySimpleExecute($queryToUse);
     }
 
-
+    /**
+     * Permets de retrouver un ID avec un pseudo.
+     * @param string $elePseudo Pseudo de l'utilisateur
+     * @return array
+     */
+    public function getIdByUsername($elePseudo)
+    {
+        $req = $this->querySimpleExecute("SELECT idEleve FROM t_eleves WHERE elePseudo='$elePseudo'");
+        $result = $this->formatData($req);
+        $this->unsetData($req);
+        return $result;
+    }
 }
-
-
-?>
