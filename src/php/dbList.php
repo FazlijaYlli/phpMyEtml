@@ -9,25 +9,9 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <nav class="navbar navbar-expand navbar-light bg-light">
-            <a class="navbar-brand" href="#">PhpMyEtml</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Importer une BD</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Exporter une BD</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Importer des données</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-warning" href="changePassword.php">Changer le mot de passe</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <header>
+            <?php include "header.php" ?>
+        </header>
         <main class="container">
             <table class="table table-striped mt-4">
                 <thead>

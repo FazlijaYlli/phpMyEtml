@@ -18,7 +18,7 @@ class Database extends Model
     {
         try {
             $this->pdo = new PDO(
-                'mysql:host=' . $_SESSION['address'] . ';dbname=db_users;charset=utf8', $_SESSION['user'], $_SESSION['password']);
+                'mysql:host=' . $_SESSION['address'] . ';dbname=db_support;charset=utf8', $_SESSION['user'], $_SESSION['password']);
         } catch (PDOException $e) {
             die("Erreur : " . $e->getMessage());
         }

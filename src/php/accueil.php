@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -9,23 +9,9 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <nav class="navbar navbar-expand navbar-light bg-light">
-            <a class="navbar-brand" href="#">PhpMyEtml</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Importer une BD</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Exporter une BD</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Importer des données</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
+        <header>
+            <?php include 'header.php'; ?>
+        </header>
         <div class="container">
             <h1>Se connecter</h1>
             <form method="post" action="connect.php" enctype="multipart/form-data" name="form">
@@ -39,7 +25,7 @@
                 </div>
                 <div class="formHide">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radConnect" id="radConnect1" value="10.228.156.128:8080" data-toggle="collapse" data-parent="#accordion"data-target=".collapseOne.show" >
+                        <input class="form-check-input" type="radio" name="radConnect" id="radConnect1" value="localhost" data-toggle="collapse" data-parent="#accordion"data-target=".collapseOne.show" >
                         <label class="form-check-label" for="radConnect1">
                             Connexion en local
                         </label>
