@@ -51,19 +51,16 @@ session_start(); ?>
 
 
 <?php
-include 'database.php';
+include 'lib/Database.php';
 
 
 
 
 if(!empty($_SESSION['user'])){
     $connect = new database();
-
-    $connect->getDatabases();
     foreach($connect->getDatabases() as $results){
         foreach($results as $result)
         {
-
             echo '<tr>
                 <td>'.$result.'</td>
                 <td><a href="importdb.php?dbList='.$result.'">Importer...</a> </td>
