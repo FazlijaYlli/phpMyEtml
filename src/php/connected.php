@@ -55,7 +55,6 @@ include 'lib/Database.php';
 
 
 
-
 if(!empty($_SESSION['user'])){
     $connect = new database();
     foreach($connect->getDatabases() as $results){

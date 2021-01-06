@@ -59,6 +59,8 @@ class Database extends Model
         return $result;
     }
 
+
+
     /**
      * Retourne tous les enseignants
      *
@@ -104,6 +106,8 @@ class Database extends Model
         $queryToUse = 'GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, CREATE VIEW, EVENT, TRIGGER, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EXECUTE ON '.$dbname.'.* TO '.$_SESSION["user"].'@"%"';
         $req = $this->querySimpleExecute($queryToUse);
     }
+
+
 }
 
 

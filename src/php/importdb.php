@@ -1,7 +1,7 @@
 <?php
-
+session_start();
 echo '<h3>Charger des données sur '.$_GET['dbList'].'</h3>
-<form action="importing.php?dbList='.$_GET['dbList'].'" method="post" enctype="multipart/form-data">
+<form action="importing.php?dbList='.$_SESSION['user'].'_'.$_GET['dbList'].'" method="post" enctype="multipart/form-data">
       <label for="download">Téléverser votre fichier (fichiers .sql seulement) : </label>
         <input type="file" name="download" id="download"/><br>
         
