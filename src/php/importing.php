@@ -1,4 +1,5 @@
 <?php
+session_start();
 var_dump($_GET);
 
 $con = new PDO('mysql:host=localhost;dbname='.$_GET['dbList'].';charset=utf8' , 'root', 'root');
